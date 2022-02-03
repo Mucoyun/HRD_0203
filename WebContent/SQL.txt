@@ -1,0 +1,17 @@
+create table member0203(
+	id number(8) primary key,
+	password varchar(30) not null,
+	name varchar(30) not null,
+	gender char(1) not null,
+	birth date,
+	email varchar(45),
+	phone varchar(13),
+	address varchar(80),
+	interest varchar(80),
+	timestamp date
+);
+
+insert into member0203 values(20200001,'1234','홍길동','1','2001-02-21','hong@korea.com','010-1111-1111','부산시 부산진구 양정동','여행,프로그램',current_timestamp);
+insert into member0203 values(20200002,'1234','유관순','2','2000-12-23','ryu@korea.com','010-2222-1111','부산시 동래구 명장동','독서,사진',current_timestamp);
+insert into member0203 values(20200003,'1234','강감찬','1','1999-03-02','kang@korea.com','010-3333-3333','부산시 금정구 장전동','컴퓨터',current_timestamp);
+
