@@ -15,3 +15,16 @@ insert into member0203 values(20200001,'1234','홍길동','1','2001-02-21','hong
 insert into member0203 values(20200002,'1234','유관순','2','2000-12-23','ryu@korea.com','010-2222-1111','부산시 동래구 명장동','독서,사진',current_timestamp);
 insert into member0203 values(20200003,'1234','강감찬','1','1999-03-02','kang@korea.com','010-3333-3333','부산시 금정구 장전동','컴퓨터',current_timestamp);
 
+create table product0203(
+	productId varchar2(20) primary key,
+	name varchar2(45) not null,
+	unitprice number(11) not null,
+	description varchar2(45),
+	category varchar2(45),
+	manufacturer varchar2(45),
+	unitsInstock number(11),
+	condition varchar2(45)
+);
+
+insert into product0203 values('P123456','computer',1500000,'cpu256 samsung','10','samsung',11,'신규제품');
+insert into product0203 values('P123457','mouse',15000,'wireless','10','lg',20,'신규제품');

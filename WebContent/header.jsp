@@ -105,6 +105,11 @@
 			background-color: black;
 			color: white;
 		}
+		
+		#pSelect{
+			height: 25px;
+			width: 200px !important;
+		}
 	</style>
 	<style>
 		#s_table tr{
