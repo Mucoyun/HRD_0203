@@ -15,6 +15,12 @@
 			width: 1200px;
 			margin: 0 auto;
 			padding: 0 !important;
+		}a{
+			color: blue;
+			font-weight: bold;
+		}a:HOVER{
+			color: red;
+			font-weight: bold;
 		}
 	</style>
 </head>

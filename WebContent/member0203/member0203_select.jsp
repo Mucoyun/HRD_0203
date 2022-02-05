@@ -15,6 +15,12 @@
 			width: 1600px;
 			margin: 0 auto;
 			padding: 0 !important;
+		}a{
+			color: blue;
+			font-weight: bold;
+		}a:HOVER{
+			color: red;
+			font-weight: bold;
 		}
 	</style>
 </head>
@@ -53,7 +59,7 @@
 			</tr>
 			<%
 			try{
-				String sql = "select id,name,password,gender,birth,email,phone,address,interest from member0203";
+				String sql = "select id,name,password,gender,birth,email,phone,address,interest from member0203 order by id asc";
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while(rs.next()){

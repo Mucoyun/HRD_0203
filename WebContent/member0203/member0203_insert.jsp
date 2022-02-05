@@ -7,6 +7,7 @@
 	<title>윤원태 - 실습 23 -</title>
 	<script>
 		function signin() {
+			var interestChk = chkBox();
 			if(document.iu_form.name.value==""){
 				alert("이름을 입력하세요.");
 				document.iu_form.name.focus();
@@ -19,6 +20,8 @@
 			}else if(document.iu_form.pass.value!=document.iu_form.repass.value){
 				alert("비밀번호와 확인비밀번호가 일치하지 않습니다.");
 				document.iu_form.repass.focus();
+			}else if(!interestChk){
+				alert("취미를 하나이상 체크하세요.");
 			}else{
 				document.iu_form.submit();
 			}
@@ -33,6 +36,18 @@
 			}else{
 				document.iu_form.email2.value=email3.value;
 			}
+		}
+		
+		function chkBox() {
+			var interestChk = false;
+			var arr_interest = document.getElementsByName("interest");
+			for(var i=0; i< arr_interest.length; i++){
+				if(arr_interest[i].checked == true){
+					interestChk = true;
+					break;
+				}
+			}
+			return interestChk;
 		}
 	</script>
 </head>

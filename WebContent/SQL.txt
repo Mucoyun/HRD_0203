@@ -28,3 +28,22 @@ create table product0203(
 
 insert into product0203 values('P123456','computer',1500000,'cpu256 samsung','10','samsung',11,'신규제품');
 insert into product0203 values('P123457','mouse',15000,'wireless','10','lg',20,'신규제품');
+
+
+create table order0203(
+	orderDate date,
+	orderName varchar2(20),
+	productId varchar2(20) not null,
+	unitprice number(11) not null,
+	orderQty number(11) not null,
+	orderAddress varchar2(45) not null,
+	primary key(orderDate,orderName)
+);
+
+select
+	a.unitsInstock,b.orderQty,b.productId
+from
+	product0203 a,order0203 b
+where
+	a.productId=b.productId and b.orderDate='2022-01-01' and b.orderName='3333'
+;
