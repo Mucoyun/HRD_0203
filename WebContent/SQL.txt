@@ -54,7 +54,7 @@ where
 
 
 select
-	orderDate,sum(orderQty),sum(unitprice)
+	to_char(orderDate,'yyyy-mm-dd'),sum(orderQty),sum(unitprice*orderQty)
 from
 	order0203
 group by
@@ -64,7 +64,7 @@ order by
 ;
 	
 select
-	orderName,sum(orderQty),sum(unitprice)
+	orderName,sum(orderQty),sum(unitprice*orderQty)
 from
 	order0203
 group by
@@ -74,7 +74,7 @@ order by
 ;
 	
 select
-	a.ProductId,b.name,sum(a.orderQty),sum(a.unitprice)
+	a.ProductId,b.name,sum(a.orderQty),sum(a.unitprice*a.orderQty)
 from
 	order0203 a,product0203 b
 where
@@ -86,7 +86,7 @@ order by
 ;
 
 select
-	a.orderDate,a.ProductId,b.name,sum(a.orderQty),sum(a.unitprice)
+	to_char(a.orderDate,'yyyy-mm-dd'),a.ProductId,b.name,sum(a.orderQty),sum(a.unitprice*a.orderQty)
 from
 	order0203 a,product0203 b
 where
@@ -98,7 +98,7 @@ order by
 ;
 
 select
-	a.ProductId,b.name,a.orderDate,sum(a.orderQty),sum(a.unitprice)
+	a.ProductId,b.name,to_char(a.orderDate,'yyyy-mm-dd'),sum(a.orderQty),sum(a.unitprice*a.orderQty)
 from
 	order0203 a,product0203 b
 where
@@ -109,5 +109,33 @@ order by
 	a.productId asc,b.name asc,a.orderDate asc
 ;
 
+create table store0203(
+	storeNo number(3) primary key,
+	storeName varchar2(50) not null,
+	storeTel varchar2(13),
+	storeAddress varchar2(80)
+);
+
+insert into store0203 values(100,'서면점','051-333-1234','부산시 부산진구 부전동');
+insert into store0203 values(101,'금정점','051-555-4321','부산시 금정구 장전동');
+insert into store0203 values(102,'기장점','051-758-1234','부산시 기장군');
+
+drop sequence store0203_seq;
+
+create sequence store0203_seq
+	start with 100
+	increment by 1
+	maxvalue 999
+	cycle
+;
+
+
+select
+	storeNo,storeName,storeTel,storeAddress
+from
+	store0203
+order by
+	storeNo
+;
 
 

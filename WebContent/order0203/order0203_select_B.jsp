@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.text.DecimalFormat" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,7 @@
 	<%@ include file="/DBConn.jsp" %>
 	<%@ include file="/header.jsp" %>
 	<%@ include file="/nav.jsp" %>
+	<% DecimalFormat fo = new DecimalFormat("###,###,###"); %>
 	<section>
 		<h2>주문 목록(주문자별 수량 및 금액 합계)</h2>
 		<table id="s_table">
@@ -26,38 +28,36 @@
 			</tr>
 			<%
 			int no = 0;
+			int totalOrderQty = 0;
+			int totalUnitprice = 0;
 			try{
-				String sql = "select orderName,to_char(sum(orderQty),'999,999,999'),to_char(sum(unitprice),'999,999,999') from order0203 group by orderName order by orderName asc";
+				String sql = "select orderName,sum(orderQty),sum(unitprice*orderQty) from order0203 group by orderName order by orderName asc";
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while(rs.next()){
 					no++;
 					String orderName = rs.getString(1);
-					String orderQty = rs.getString(2);
-					String unitprice = rs.getString(3);
+					int orderQty = rs.getInt(2);
+					int unitprice = rs.getInt(3);
+					
+					totalOrderQty = totalOrderQty + orderQty;
+					totalUnitprice = totalUnitprice + unitprice;
 					%>
 					<tr>
 						<td><%=no %></td>
 						<td><%=orderName %></td>
-						<td class="cost"><%=orderQty %></td>
-						<td class="cost"><%=unitprice %></td>
+						<td class="cost"><%=fo.format(orderQty) %></td>
+						<td class="cost"><%=fo.format(unitprice) %></td>
 					</tr>
 					<%
 				}
-				sql = "select to_char(sum(orderQty),'999,999,999'),to_char(sum(unitprice),'999,999,999') from order0203";
-				pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				if(rs.next()){
-					String tatalOrderQty = rs.getString(1);
-					String tatalUnitprice = rs.getString(2);
-					%>
-					<tr>
-						<td colspan="2">합 계</td>
-						<td class="cost"><%=tatalOrderQty %></td>
-						<td class="cost"><%=tatalUnitprice %></td>
-					</tr>
-					<%
-				}
+				%>
+				<tr>
+					<td colspan="2">합 계</td>
+					<td class="cost"><%=fo.format(totalOrderQty) %></td>
+					<td class="cost"><%=fo.format(totalUnitprice) %></td>
+				</tr>
+				<%
 			}catch(SQLException e){
 				e.printStackTrace();
 			}
