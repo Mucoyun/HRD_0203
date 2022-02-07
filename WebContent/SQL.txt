@@ -1,3 +1,7 @@
+drop table member0203;
+drop table product0203;
+drop table order0203;
+
 create table member0203(
 	id number(8) primary key,
 	password varchar(30) not null,
@@ -47,3 +51,63 @@ from
 where
 	a.productId=b.productId and b.orderDate='2022-01-01' and b.orderName='3333'
 ;
+
+
+select
+	orderDate,sum(orderQty),sum(unitprice)
+from
+	order0203
+group by
+	orderDate
+order by
+	orderDate asc
+;
+	
+select
+	orderName,sum(orderQty),sum(unitprice)
+from
+	order0203
+group by
+	orderName
+order by
+	orderName asc
+;
+	
+select
+	a.ProductId,b.name,sum(a.orderQty),sum(a.unitprice)
+from
+	order0203 a,product0203 b
+where
+	a.ProductId=b.ProductId
+group by
+	a.ProductId,b.name
+order by
+	a.ProductId asc
+;
+
+select
+	a.orderDate,a.ProductId,b.name,sum(a.orderQty),sum(a.unitprice)
+from
+	order0203 a,product0203 b
+where
+	a.ProductId=b.ProductId
+group by
+	a.orderDate,a.ProductId,b.name
+order by
+	a.orderDate asc,a.productId asc,b.name asc
+;
+
+select
+	a.ProductId,b.name,a.orderDate,sum(a.orderQty),sum(a.unitprice)
+from
+	order0203 a,product0203 b
+where
+	a.ProductId=b.ProductId
+group by
+	a.ProductId,b.name,a.orderDate
+order by
+	a.productId asc,b.name asc,a.orderDate asc
+;
+
+
+

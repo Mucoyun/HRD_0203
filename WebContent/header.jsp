@@ -125,6 +125,9 @@
 			background-color: black;
 			color: white;
 		}
+		.cost{
+			text-align: right !important;
+		}
 	</style>
 </head>
 <body>
