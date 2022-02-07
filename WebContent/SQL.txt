@@ -123,7 +123,7 @@ insert into store0203 values(102,'기장점','051-758-1234','부산시 기장군
 drop sequence store0203_seq;
 
 create sequence store0203_seq
-	start with 100
+	start with 103
 	increment by 1
 	maxvalue 999
 	cycle
