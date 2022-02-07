@@ -15,7 +15,7 @@
 			}
 		}
 		function notry() {
-			document.iu_form.reset();
+			location.href="/HRD_0203/store0203/store0203_select.jsp";
 		}
 	</script>
 </head>
@@ -50,7 +50,7 @@
 		}
 	%>
 	<section>
-		<h2>거래처 등록 화면</h2>
+		<h2>거래처 수정 화면</h2>
 		<form name="iu_form" method="post" action="store0203_update_process.jsp">
 			<hr><table id="iu_table">
 				<tr>
